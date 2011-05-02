@@ -150,6 +150,7 @@ public class PageDrawer extends PDFStreamEngine
                     graphics.setColor( this.getGraphicsState().getNonStrokingColor().getJavaColor() );
                     break;
                 case PDTextState.RENDERING_MODE_STROKE_TEXT:
+                    graphics.setComposite( this.getGraphicsState().getStrokeJavaComposite() );
                     graphics.setColor( this.getGraphicsState().getStrokingColor().getJavaColor() );
                     break;
                 case PDTextState.RENDERING_MODE_NEITHER_FILL_NOR_STROKE_TEXT:
@@ -157,6 +158,7 @@ public class PageDrawer extends PDFStreamEngine
                     Color nsc = this.getGraphicsState().getStrokingColor().getJavaColor();
                     float[] components = {Color.black.getRed(),Color.black.getGreen(),Color.black.getBlue()};
                     Color  c = new Color(nsc.getColorSpace(),components,0f);
+                    graphics.setComposite( this.getGraphicsState().getStrokeJavaComposite() );
                     graphics.setColor(c);
                     break;
                 default:
@@ -167,6 +169,7 @@ public class PageDrawer extends PDFStreamEngine
                             + " Using RenderingMode "
                             + PDTextState.RENDERING_MODE_FILL_TEXT
                             + " instead");
+                    graphics.setComposite( this.getGraphicsState().getNonStrokeJavaComposite() );
                     graphics.setColor( this.getGraphicsState().getNonStrokingColor().getJavaColor() );
             }
 
@@ -383,8 +386,9 @@ public class PageDrawer extends PDFStreamEngine
      * 
      */
     public void drawImage(Image awtImage, AffineTransform at){        
-                graphics.setClip(getGraphicsState().getCurrentClippingPath());
-                graphics.drawImage( awtImage, at, null );
+        graphics.setComposite(getGraphicsState().getStrokeJavaComposite());
+        graphics.setClip(getGraphicsState().getCurrentClippingPath());
+        graphics.drawImage( awtImage, at, null );
     }
     
     /**

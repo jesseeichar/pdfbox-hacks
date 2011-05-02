@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.apache.pdfbox</groupId>
     <artifactId>pdfbox-parent</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.0-MAPFISH-1.2</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
@@ -40,12 +40,12 @@
     <dependency>
       <groupId>org.apache.pdfbox</groupId>
       <artifactId>fontbox</artifactId>
-      <version>${project.version}</version>
+      <version>1.5.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.pdfbox</groupId>
       <artifactId>jempbox</artifactId>
-      <version>${project.version}</version>
+      <version>1.5.0</version>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
